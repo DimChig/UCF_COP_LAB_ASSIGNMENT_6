@@ -1,7 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
+    //binary search
+    if (high < low) high = low;
+
+    if (low == high) {
+        if (numbers[low] == value) return low;
+        return -1;
+    }
+
+    int midpoint = (low + high) / 2;
+    if (numbers[midpoint] == value) return midpoint;
+    if (numbers[midpoint] > value) return search(numbers, low, midpoint-1, value);
+    if (numbers[midpoint] < value) return search(numbers, midpoint+1, high, value);
+
+
 	return -1;
 }
 
